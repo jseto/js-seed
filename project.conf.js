@@ -2,13 +2,14 @@
 
 var fs = require('fs');
 var bower = JSON.parse( fs.readFileSync( './.bowerrc', 'utf8' ) );
+var tsd = JSON.parse( fs.readFileSync( './tsd.json', 'utf8' ) );
 
 var basePath = __dirname;
 var path = {
 	base: basePath,
 	client: basePath + '/client/',
 	tsOut: basePath + '/client/out/', 				// TypeScript transpiled destination
-	tsDefinitions: basePath + '/tsd/',				// TypeScript definition files
+	customTsd: basePath + '/' + tsd.path + '/custom/',					// Generated TypeScript definition files
 	test: {
 		base: basePath + '/test/',
 		client: basePath + '/test/client/',
