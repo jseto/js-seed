@@ -6,6 +6,7 @@ __A starter project for Angular.__
 Based on [Angular][angular]'s [angular-seed](http://github.com/angular/angular-seed)  but using gulp.
     
 This project is an application skeleton for a basic [AngularJS](http://angularjs.org/) web app. Additionally it takes benefit form [Bootstrap][bootstrap] responsive framework. It is ready for [Travis CI][travis] continuous integration platform.
+Now suports [TypeScript][typescript] transpiler.
 
 ## Getting Started
 
@@ -117,7 +118,7 @@ The easiest way to run the unit tests is to use the supplied npm script:
 gulp test
 ```
 
-###Client Unit tests
+###Unit tests
 
 The js-seed app comes preconfigured with unit tests. These are written in
 [Jasmine][jasmine], which we run with the [Karma Test Runner][karma]. We provide a Karma
@@ -185,6 +186,22 @@ If you only want the server without the tests invoke
 gulp server:start
 ```
 
+### TypeScript support
+
+To transpile TypeScrip files invoke 
+
+```
+gulp ts
+```
+
+If you invoke 
+
+```
+gulp develop:ts
+```
+
+will do the same as `gulp develop` and aditionally it will watch typescript files for changes. In case a typescript changes it will be transpilled automatically.
+
 ## Continuous Integration
 
 ### Travis CI
@@ -226,3 +243,4 @@ __js-seed__ is distributed under the [MIT license](http://opensource.org/license
 [jasmine-node]: http://github.com/mhevery/jasmine-node
 [instant]: http://github.com/fgnass/instant
 [gulp]: http://gulpjs.com/
+[typescript]: http://www.typescriptlang.org/
