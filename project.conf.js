@@ -7,6 +7,8 @@ var basePath = __dirname;
 var path = {
 	base: basePath,
 	client: basePath + '/client/',
+	tsOut: basePath + '/client/out/', 				// TypeScript transpiled destination
+	tsDefinitions: basePath + '/tsd/',				// TypeScript definition files
 	test: {
 		base: basePath + '/test/',
 		client: basePath + '/test/client/',
