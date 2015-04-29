@@ -3,6 +3,7 @@ logs/*
 node_modules/
 bower_components/
 typings
+client/out/
 tmp
 .DS_Store
 .idea

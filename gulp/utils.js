@@ -13,8 +13,8 @@ module.exports = {
 		return '[' + gutil.colors.red( name ) + ']';
 	},
 
-	printChangedFiles: function( change ) {
-		return this.printTaskName( 'watch:server' ) + ' ' +
+	printChangedFiles: function( change, taskName ) {
+		return this.printTaskName( taskName || 'watch:server' ) + ' ' +
 			gutil.colors.cyan( 'File', change.type ) +  ' ' +
 			gutil.colors.magenta( this.relPath( change.path ) );
 	},

@@ -27,3 +27,5 @@ gulp.task('server:reload', ['browser-sync'], function(){
 });
 
 gulp.task('develop', ['server:reload', 'watch:test:unit']);
+
+gulp.task('develop:ts', ['develop', 'watch:ts']);
