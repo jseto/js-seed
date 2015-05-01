@@ -1,10 +1,8 @@
 {
     "compilerOptions": {
-        "out": "client/out/out.js", 
-        "sourceMap": true, 
         "target": "es5"
     }, 
     "files": [
-        "typings/angularjs/angular.d.ts"
+        "typings/tsd.d.ts"
     ]
 }

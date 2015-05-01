@@ -1,3 +1,5 @@
+/// <reference path="typings/node/node.d.ts" />
+
 'use strict';
 
 var fs = require('fs');
@@ -8,7 +10,7 @@ var basePath = __dirname;
 var path = {
 	base: basePath,
 	client: basePath + '/client/',
-	tsOut: basePath + '/client/out/', 				// TypeScript transpiled destination
+	typeDefinitions: basePath + '/' + tsd.path +'/', 				
 	customTsd: basePath + '/' + tsd.path + '/custom/',					// Generated TypeScript definition files
 	test: {
 		base: basePath + '/test/',

@@ -1,3 +1,5 @@
+/// <reference path="../typings/node/node.d.ts" />
+
 'use strict';
 
 var gulp = require('gulp');
@@ -20,23 +22,44 @@ var tsProject = ts.createProject({
     noExternalResolve: true
 });
 
-var _ts = function(){
-    var tsResult = gulp.src( path.client + '**/*.ts' ).pipe( ts( tsProject ) );
+var tsProjectTest = ts.createProject({
+    declarationFiles: true,
+    noExternalResolve: true
+});
+
+var tsImpl = function(){
+    var tsResult = gulp.src([
+		path.client + '/**/*.ts',
+		path.typeDefinitions + '/**/*.d.ts',
+	])
+    .pipe( ts( tsProject ) );
 
     return merge([ // Merge the two output streams, so this task is finished when the IO of both operations are done. 
-        tsResult.dts.pipe( gulp.dest( path.customTsd ) ),
-        tsResult.js.pipe( gulp.dest( path.tsOut ) )
+//        tsResult.dts.pipe( gulp.dest( path.customTsd ) ),
+        tsResult.js.pipe( gulp.dest( path.client ) )
     ]);
-
 };
 
-gulp.task('ts', _ts );
+var tsTest = function(){
+    var tsResult = gulp.src([
+		path.test.base + '/**/*.ts',
+		path.base + '/typings/**/*.ts'
+	])
+    .pipe( ts( tsProjectTest ) );
+
+    return tsResult.js.pipe( gulp.dest( path.test.base ) )
+};
+
+gulp.task( 'ts:impl', tsImpl );
+gulp.task( 'ts:test', tsTest );
+gulp.task('ts', ['ts:impl', 'ts:test'] );
 
 gulp.task('watch:ts', ['ts'], function(){
 	gulp.watch(	project.watch.typescriptFiles, function( data ){
 		console.log( utils.printChangedFiles( data, 'watch:ts' ) );
 		console.log( utils.printTaskName('watch:ts') + ' Transpiled' );
-		_ts();
+		tsImpl();
+		tsTest();
 	});
 });
 
