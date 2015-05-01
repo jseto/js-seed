@@ -34,7 +34,8 @@ module.exports = {
 			'!' + path.bower + '**/+(*.js|*.html|*.css)',			//excluded
 		],
 		typescriptFiles: [
-			path.client + '**/*.ts'
+			path.client + '**/*.ts',
+			path.test.base + '**/*.ts'
 		]
 	},
 	test:{
