@@ -4,6 +4,7 @@ node_modules/
 bower_components/
 typings
 client/out/
+test/out/
 tmp
 .DS_Store
 .idea

@@ -10,12 +10,14 @@ var basePath = __dirname;
 var path = {
 	base: basePath,
 	client: basePath + '/client/',
+	outputFiles: basePath + '/client/out/',
 	typeDefinitions: basePath + '/' + tsd.path +'/', 				
 	customTsd: basePath + '/' + tsd.path + '/custom/',					// Generated TypeScript definition files
 	test: {
 		base: basePath + '/test/',
 		client: basePath + '/test/client/',
 		e2e: basePath + '/test/client/',
+		outputFiles: basePath + '/test/out/'
 	},
 	bower: basePath + '/' + bower.directory + '/',
 	coverage: basePath + '/coverage/'
@@ -45,7 +47,8 @@ module.exports = {
 				path.bower + 'angular-mocks/angular-mocks.js',
 				path.client + '*.js',
 				path.client + '!(bower_components)/**/*.js',
-				path.test.client + '**/*.js'
+				path.test.client + '**/*.js',
+				path.test.outputFiles + '**/*.js'
 			],
 			exclude : [
 				path.test.client + '**/*.conf.js',
