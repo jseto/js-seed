@@ -78,6 +78,7 @@ gulp.task('watch:ts', ['ts'], function(){
 gulp.task('clean:ts', function( done ){
 	del( [
 		path.customTsd + '**',
-		path.tsOut + '**'	
+		path.outputFiles + '**',	
+		path.test.outputFiles + '**'	
 	], done )
 });
