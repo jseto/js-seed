@@ -9,6 +9,7 @@ var ts = require('gulp-typescript');
 var merge = require('merge2');
 var dirname = require('path').dirname;
 var utils = require('./utils.js');
+var sourcemaps = require('gulp-sourcemaps');
 var path = project.path;
 
 var del = require('del');
@@ -24,13 +25,17 @@ var tsImpl = function(){
 		path.client + '**/*.ts',
 //		path.typeDefinitions + '**/*.d.ts',
 	])
+	.pipe(sourcemaps.init())
     .pipe( ts({
-		declarationFiles: true		
+		declarationFiles: true,
+		target: 'ES5'
 	}));
 
-    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations are done. 
+    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations are done.
 //        tsResult.dts.pipe( gulp.dest( path.customTsd ) ),
-        tsResult.js.pipe( gulp.dest( path.outputFiles ) )
+        tsResult.js
+			.pipe( sourcemaps.write() )
+			.pipe( gulp.dest( path.outputFiles ) )
     ]);
 };
 
@@ -39,18 +44,26 @@ var tsTest = function(){
 		path.test.base + '**/*.ts',
 //		path.typeDefinitions + '**/*.d.ts',
 	])
-    .pipe( ts({}) );
+	.pipe(sourcemaps.init())
+    .pipe( ts({
+		target: 'ES5'
+	}) );
 
-    return tsResult.js.pipe( gulp.dest( path.test.outputFiles ) );
+    return tsResult.js
+		.pipe( sourcemaps.write() )
+		.pipe( gulp.dest( path.test.outputFiles ) );
 };
 
 var tsFile = function( filePath ) {
-	var isTestFile = filePath.indexOf( path.test.base ) >= 0; 
+	var isTestFile = filePath.indexOf( path.test.base ) >= 0;
 
 	return gulp.src( filePath )
+				.pipe(sourcemaps.init())
 				.pipe( ts({
-					declarationFiles: !isTestFile 
+					declarationFiles: !isTestFile,
+					target: 'ES5'
 				}) )
+				.pipe( sourcemaps.write() )
 				.pipe( gulp.dest( outPath() ) );
 
 	function outPath() {
@@ -58,7 +71,7 @@ var tsFile = function( filePath ) {
 			return path.test.outputFiles + dirname( filePath.slice( path.test.base.length ) );
 		}
 		else {
-			return path.outputFiles + dirname( filePath.slice( path.client.length ) );		
+			return path.outputFiles + dirname( filePath.slice( path.client.length ) );
 		}
 	};
 };
@@ -78,7 +91,7 @@ gulp.task('watch:ts', ['ts'], function(){
 gulp.task('clean:ts', function( done ){
 	del( [
 		path.customTsd + '**',
-		path.outputFiles + '**',	
-		path.test.outputFiles + '**'	
+		path.outputFiles + '**',
+		path.test.outputFiles + '**'
 	], done )
 });

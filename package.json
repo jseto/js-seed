@@ -15,7 +15,8 @@
     "gulp": "^3.8.11",
     "gulp-protractor": "^0.0.12",
     "gulp-rename": "^1.2.0",
-    "gulp-typescript": "^2.6.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "^2.7.3",
     "gulp-util": "^3.0.2",
     "jasmine-core": "^2.1.3",
     "jasmine-reporters": "git://github.com/larrymyers/jasmine-reporters.git",
@@ -26,6 +27,7 @@
     "karma-jasmine": "^0.3.4",
     "karma-junit-reporter": "^0.2.2",
     "karma-ng-html2js-preprocessor": "^0.1.2",
+    "karma-sourcemap-loader": "^0.3.4",
     "merge2": "^0.3.5",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2",
@@ -33,6 +35,6 @@
   },
   "dependencies": {},
   "scripts": {
-    "postinstall": "bower install && tsd update && gulp postinstall"
+    "postinstall": "bower install && tsd reinstall && gulp postinstall"
   }
 }

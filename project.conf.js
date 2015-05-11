@@ -11,7 +11,7 @@ var path = {
 	base: basePath,
 	client: basePath + '/client/',
 	outputFiles: basePath + '/client/out/',
-	typeDefinitions: basePath + '/' + tsd.path +'/', 				
+	typeDefinitions: basePath + '/' + tsd.path +'/',
 	customTsd: basePath + '/' + tsd.path + '/custom/',					// Generated TypeScript definition files
 	test: {
 		base: basePath + '/test/',
@@ -24,8 +24,14 @@ var path = {
 };
 
 var karmaPreprocessors = {};
-karmaPreprocessors[ path.test + '**/*.html' ] = 'ng-html2js';
-karmaPreprocessors[ path.base + '/{client,client/!(bower_components)/**}/*.js' ] = 'coverage';
+	karmaPreprocessors[
+		path.test + '**/*.html'
+	] = 'ng-html2js';
+	karmaPreprocessors[ path.base + '/{client,client/!(bower_components)/**}/*.js' ] = 'coverage';
+	karmaPreprocessors[
+		path.outputFiles + '**/*.js',
+		path.test.outputFiles + '**/*.js'
+	] = 'sourcemap';
 
 module.exports = {
 	port: 3000,
@@ -43,9 +49,11 @@ module.exports = {
 	test:{
 		unit:{
 			files : [
+				path.bower + 'jquery/dist/jquery.js',
 				path.bower + 'angular/angular.js',
 				path.bower + 'angular-mocks/angular-mocks.js',
 				path.client + '*.js',
+				path.outputFiles + '**/*.js',
 				path.client + '!(bower_components)/**/*.js',
 				path.test.client + '**/*.js',
 				path.test.outputFiles + '**/*.js'
