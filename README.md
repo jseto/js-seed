@@ -4,9 +4,9 @@ js-seed [![Build Status](https://travis-ci.org/jseto/js-seed.svg?branch=master)]
 __A starter project for Angular.__
 
 Based on [Angular][angular]'s [angular-seed](http://github.com/angular/angular-seed)  but using gulp.
-    
+
 This project is an application skeleton for a basic [AngularJS](http://angularjs.org/) web app. Additionally it takes benefit form [Bootstrap][bootstrap] responsive framework. It is ready for [Travis CI][travis] continuous integration platform.
-Now suports [TypeScript][typescript] transpiler.
+Now supports [TypeScript][typescript] transpiler.
 
 ## Getting Started
 
@@ -80,7 +80,7 @@ gulp server:start
 
 Now browse to the app at `http://localhost:3000`.
 
-This will start the webserver and leave it running in the background. 
+This will start the webserver and leave it running in the background.
 
 ## Directory Layout
 
@@ -124,7 +124,7 @@ The js-seed app comes preconfigured with unit tests. These are written in
 [Jasmine][jasmine], which we run with the [Karma Test Runner][karma]. We provide a Karma
 configuration file to run them.
 
-* the configuration is found at `test/karma.conf.js`, but you should use project.conf.js 
+* the configuration is found at `test/karma.conf.js`, but you should use project.conf.js
 * the unit tests are found in the `test/client` folder with a similar structure as the code they are testing and are named as `*.spec.js` (you can change that with project.conf.js).
 
 to run this test alone just type
@@ -135,7 +135,7 @@ gulp test:client
 
 This script will start the Karma test runner to execute the unit tests.
 
-If you want to watch the source and test files for changes and then re-run the tests whenever any of them change, run 
+If you want to watch the source and test files for changes and then re-run the tests whenever any of them change, run
 
 ```
 gulp watch:test:client
@@ -147,12 +147,12 @@ The js-seed app comes with end-to-end tests, again written in [Jasmine][jasmine]
 are run with the [Protractor][protractor] End-to-End test runner.  It uses native events and has
 special features for Angular applications.
 
-* the configuration is found at `test/protractor-conf.js`. Again, configure throught project.conf.js
+* the configuration is found at `test/protractor-conf.js`. Again, configure through project.conf.js
 * the e2e tests are found in the `test/client` folder with a similar structure as the code they are testing and are named as `*.e2e-spec.js`.
 
 Protractor simulates interaction with our web app and verifies that the application responds
 correctly. Therefore, our web server needs to be serving up the application, so that Protractor
-can interact with it. If you run the provided nmp tasks you do not need to worry about that becase they automatically start the server
+can interact with it. If you run the provided nmp tasks you do not need to worry about that because they automatically start the server
 
 You can run the end-to-end tests alone using the script:
 
@@ -166,13 +166,13 @@ development server.
 ## Developing
 
 We provide several tools to help in the app development phase. Basically are watchers, a browser re-loader and the server itself.
-Although you can change the behaviour of the server, the proposed configuration covers all the need you can have and we will focus on client side development. 
+Although you can change the behavior of the server, the proposed configuration covers all the need you can have and we will focus on client side development.
 
 ```
 gulp develop
 ```
 
-or just 
+or just
 
 ```
 gulp
@@ -188,19 +188,19 @@ gulp server:start
 
 ### TypeScript support
 
-To transpile TypeScrip files invoke 
+To transpile TypeScrip files invoke
 
 ```
 gulp ts
 ```
 
-If you invoke 
+If you invoke
 
 ```
 gulp develop:ts
 ```
 
-will do the same as `gulp develop` and aditionally it will watch typescript files for changes. In case a typescript changes it will be transpilled automatically.
+will do the same as `gulp develop` and additionally it will watch typescript files for changes. In case a typescript changes it will be transpilled automatically.
 
 ## Continuous Integration
 
