@@ -6,11 +6,11 @@ var path = project.path;
 
 var runSequence = require( 'run-sequence' );
 var browserSync = require( 'browser-sync' );
-var karma = require('karma').server;
+var Karma = require('karma').Server;
 var protractorInst = require('gulp-protractor');
 
 var getBrowserFromCLI = function() {   		//CLI = Command Line Interface
-	var cliOption = process.argv.slice(3)[0]; 
+	var cliOption = process.argv.slice(3)[0];
 	if ( cliOption ){
 		return cliOption.slice( cliOption.lastIndexOf('-')+1 );
 	}
@@ -34,13 +34,13 @@ gulp.task('test:unit', function (done) {
 		opts.browsers = [ browser ];
 	}
 
-	karma.start( opts , done);
+	new Karma( opts , done).start();
 });
 
 gulp.task('watch:test:unit', function (done) {
-	karma.start({
+	new Karma({
 		configFile: path.test.base + 'karma.conf.js'
-	}, done);
+	}, done).start();
 });
 
 gulp.task('test:e2e', ['browser-sync'], function(done){
@@ -52,16 +52,16 @@ gulp.task('test:e2e', ['browser-sync'], function(done){
 		args.push( browser.toLowerCase() );
 	}
 
-	gulp.src( 
-		project.test.e2e.files 
+	gulp.src(
+		project.test.e2e.files
 	)
 	.pipe( protractorInst.protractor({
 		configFile: path.test.base + 'protractor.conf.js',
 		args: args
 	}))
-	.on('error', function(e) { 
+	.on('error', function(e) {
 		browserSync.exit();
-		throw e; 
+		throw e;
 	})
 	.on('end', function(){
 		browserSync.exit();

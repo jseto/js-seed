@@ -14,10 +14,18 @@ var path = project.path;
 
 var del = require('del');
 
-gulp.task('clean', [ 'clean:coverage', 'clean:ts' ]);
+gulp.task('clean', [ 'clean:coverage', 'clean:ts', 'clean:node_modules', 'clean:bower_components' ]);
 
 gulp.task('clean:coverage', function(done){
 	del( [ path.coverage + '**'], done );
+});
+
+gulp.task('clean:node_modules', function(done) {
+	del( ['node_modules/**'], done);
+});
+
+gulp.task('clean:bower_components', function(done) {
+	del( [ path.bower + '**' ], done);
 });
 
 var tsImpl = function(){
@@ -73,7 +81,7 @@ var tsFile = function( filePath ) {
 		else {
 			return path.outputFiles + dirname( filePath.slice( path.client.length ) );
 		}
-	};
+	}
 };
 
 gulp.task( 'ts:impl', tsImpl );
@@ -93,5 +101,5 @@ gulp.task('clean:ts', function( done ){
 		path.customTsd + '**',
 		path.outputFiles + '**',
 		path.test.outputFiles + '**'
-	], done )
+	], done );
 });

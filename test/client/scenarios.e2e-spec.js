@@ -9,7 +9,5 @@ describe('app e2e test', function() {
 		expect(
 			indexPage.body.isPresent()
 		).toBe( true );
-	}); 
+	});
 });
-
-
